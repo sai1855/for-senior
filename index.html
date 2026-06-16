@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message For One of the best Human....✨</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #ffe5ec;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bg-gradient {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #f7b1ab 100%);
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            z-index: 1;
+        }
+        .bg-active { opacity: 1; }
+        .envelope-container {
+            position: absolute;
+            width: 90%; max-width: 360px; height: 450px;
+            background: #fff0f3;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            border: 3px dashed #ff7096;
+            z-index: 10;
+            transition: all 1s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+            text-align: center; padding: 20px;
+        }
+        .envelope-container.open {
+            transform: translateY(-100vh) scale(0.5); opacity: 0; pointer-events: none;
+        }
+        .envelope-title {
+            color: #ff477e; font-size: 1.8rem; font-weight: bold; margin-bottom: 30px;
+            letter-spacing: 1px; animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .ribbon-wrap {
+            position: relative; cursor: pointer; width: 120px; height: 120px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .bow { font-size: 5rem; transition: transform 0.5s ease; display: inline-block; user-select: none; -webkit-user-select: none; }
+        .ribbon-wrap:active .bow { transform: scale(0.8) rotate(-10deg); }
+        .tap-hint { margin-top: 20px; color: #ff7096; font-size: 0.9rem; font-weight: 600; }
+        .card {
+            background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-radius: 24px; padding: 25px; width: 100%; max-width: 360px; text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); border: 2px solid rgba(255, 255, 255, 0.5);
+            z-index: 2; opacity: 0; transform: scale(0.8) translateY(50px);
+            transition: opacity 1s ease 0.5s, transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s; pointer-events: none;
+        }
+        .card.reveal {
+            opacity: 1; transform: scale(1) translateY(0); pointer-events: auto;
+            animation: float 4s ease-in-out infinite 1.5s;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .photo-frame {
+            width: 100%; height: 260px; border-radius: 18px; overflow: hidden;
+            border: 4px solid #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.1); margin-bottom: 20px;
+            background: #eee; opacity: 0; transform: scale(0.9); transition: all 1s ease 1.2s;
+        }
+        .card.reveal .photo-frame { opacity: 1; transform: scale(1); }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+        h1 { color: #ff477e; font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; opacity: 0; transition: opacity 0.5s ease 2s; }
+        .card.reveal h1 { opacity: 1; }
+        .message-box {
+            color: #4a4a4a; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align: left;
+            background: rgba(255, 255, 255, 0.6); padding: 15px; border-radius: 12px; min-height: 120px; max-height: 180px; overflow-y: auto;
+        }
+        .cursor { display: inline-block; width: 2px; background-color: #ff477e; margin-left: 2px; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { background-color: transparent; } }
+        .signature { font-size: 0.85rem; color: #ff7096; font-weight: 600; opacity: 0; transition: opacity 0.5s ease; }
+        .heart { position: absolute; color: #ff7096; font-size: 20px; pointer-events: none; z-index: 5; animation: moveHeart 4s linear forwards; }
+        @keyframes moveHeart {
+            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+            10% { opacity: 0.8; transform: translateY(80vh) translateX(10px) scale(1.2); }
+            100% { transform: translateY(-10vh) translateX(-20px) scale(0.7); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-gradient" id="bgGradient"></div>
+
+    <div class="envelope-container" id="envelope">
+        <div class="envelope-title">💖 A Special Message 💖</div>
+        <div class="ribbon-wrap" onclick="openInvitation()">
+            <div class="bow" id="mainBow">💝</div>
+        </div>
+        <div class="tap-hint">Tap the bow to open ✨</div>
+    </div>
+
+    <div class="card" id="mainCard">
+        <div class="photo-frame">
+            <img src="https://i.ibb.co/Kx3QqTQD/image.png" alt="Our Memories">
+        </div>
+
+        <h1>For My Favorite Senior!🌸</h1>
+        
+        <div class="message-box">
+            <span id="typedMessage"></span><span class="cursor" id="cursor"></span>
+        </div>
+
+        <div class="signature" id="sig">With lots of love, Sai 💕</div>
+    </div>
+
+    <script>
+        const dynamicText = "To my favorite senior!🥳✨\n\nI still can’t believe you’re actually graduating and leaving me to face this college chaos alone! 😂\n\nThank you for being the absolute best guide, my ultimate hype-woman, and a true partner-in-crime. From saving me from endless stress to sharing the loudest laughs, you made campus feel like home.\n\nCollege is going to be way less fun without you around, but I know you are going to absolutely crush it in the real world! This isn't a goodbye because you're stuck with me for life anyway.\n\nGo conquer the world! Love you tons and stay in touch! 🚀💖🌸";
+        const typingSpeed = 40;
+
+        function openInvitation() {
+            document.getElementById('mainBow').innerText = '🎀';
+            setTimeout(() => {
+                document.getElementById('envelope').classList.add('open');
+                document.getElementById('bgGradient').classList.add('bg-active');
+                document.getElementById('mainCard').classList.add('reveal');
+                setInterval(createHeart, 400);
+                setTimeout(startTyping, 2200);
+            }, 600);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const symbols = ['❤️', '💖', '✨', '💕', '🌸'];
+            heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s"; 
+            heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 4000);
+        }
+
+        let index = 0;
+        function startTyping() {
+            const textContainer = document.getElementById('typedMessage');
+            function typeNextChar() {
+                if (index < dynamicText.length) {
+                    let char = dynamicText.charAt(index);
+                    if (char === '\n') { textContainer.innerHTML += '<br>'; } else { textContainer.innerHTML += char; }
+                    index++;
+                    setTimeout(typeNextChar, typingSpeed);
+                } else {
+                    document.getElementById('cursor').style.display = 'none';
+                    document.getElementById('sig').style.opacity = '1';
+                }
+            }
+            typeNextChar();
+        }
+    </script>
+</body>
+</html>
